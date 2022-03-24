@@ -6,10 +6,7 @@ As a bare minimum you must have nodeJS enabled in your manifest:
 
 ```xml
 <CEFCommandLine>
-    <Parameter>--disable-features=SameSiteByDefaultCookies,CookiesWithoutSameSiteMustBeSecure,NetworkService</Parameter>
-    <Parameter>--disable-site-isolation-trials</Parameter>
     <Parameter>--enable-nodejs</Parameter>
-    <Parameter>--mixed-context</Parameter>
 </CEFCommandLine>
 ```
 
@@ -57,3 +54,9 @@ convertBase64ToPNG(
   else console.error(result.error);
 });
 ```
+
+---
+
+## Running this panel
+
+This panel is created from the [Bombino](https://github.com/Inventsable/bombino) generator and is currently in developer context. To use it, download it to a valid CEP folder, then use `npm run serve` and relaunch Illustrator. For more info about the setup and additional commands, visit the parent bombino repo.
