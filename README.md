@@ -4,9 +4,9 @@
 
 As a bare minimum you must have nodeJS enabled in your manifest:
 
-```xml
+```html
 <CEFCommandLine>
-    <Parameter>--enable-nodejs</Parameter>
+  <Parameter>--enable-nodejs</Parameter>
 </CEFCommandLine>
 ```
 
