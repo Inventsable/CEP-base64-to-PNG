@@ -3,6 +3,8 @@ import path from "path";
 
 /**
  * Thenable function for converting base64 to PNG and rewriting to local filepath from within CEP
+ * It does not require you have a canvas element, instead it generates a temporary one and does everything invisibly (no preview)
+ *
  * @param {String} data The raw base64 data to convert
  * @param {String} filename The name (with or without ".png") of the resulting PNG file
  * @param {String} filepath The path to the parent folder of the result (for fs checking it exists before writing to disk)
@@ -73,7 +75,7 @@ function exists(targetPath) {
 
 // Determine the correct dimensions for the resulting PNG to get width/height of final result file
 function getPngDimensions(base64) {
-  // dase64 variable must not contain image:data prefix, must be rawdata
+  // base64 variable must not contain image:data prefix, must be rawdata
   const header = atob(base64.slice(0, 50)).slice(16, 24);
   const uint8 = Uint8Array.from(header, (c) => c.charCodeAt(0));
   const dataView = new DataView(uint8.buffer);
