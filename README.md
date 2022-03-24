@@ -10,7 +10,7 @@ As a bare minimum you must have nodeJS enabled in your manifest:
 </CEFCommandLine>
 ```
 
-Inside App.vue you can see the proof of concept:
+Inside [App.vue](https://github.com/Inventsable/CEP-base64-to-PNG/blob/master/src/App.vue) you can see the proof of concept:
 
 ```js
 async tryDownload() {
@@ -27,7 +27,7 @@ async tryDownload() {
 },
 ```
 
-The logic itself and a few extras are contained in ./src/utils/convertBase64.js. Usage is easy:
+The logic itself and a few extras are contained in [./src/utils/convertBase64.js](https://github.com/Inventsable/CEP-base64-to-PNG/blob/master/src/utils/convertBase64.js). Usage is easy and code is annotated with JSDoc above the function for clarity on arguments:
 
 ```js
 // You must import/require the function:
