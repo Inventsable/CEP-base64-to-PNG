@@ -16,7 +16,7 @@
     <Extension Id="com.base64.panel">
       <DispatchInfo>
         <Resources>
-          <MainPath>./public/index-dev.html</MainPath>
+          <MainPath>./public/index-single.html</MainPath>
           <!-- <MainPath>./dist/index.html</MainPath> -->
           <CEFCommandLine>
             <Parameter>--disable-features=SameSiteByDefaultCookies,CookiesWithoutSameSiteMustBeSecure,NetworkService</Parameter>
