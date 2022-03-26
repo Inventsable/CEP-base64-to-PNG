@@ -13,10 +13,12 @@ const path = require("path");
 function convertBase64ToPNG(data, filename, filepath) {
   return new Promise((resolve, reject) => {
     try {
-      let prefix = data.match(/data.*\,/)[0];
-      data = data.replace(prefix, "");
+      data = data.replace(/^data.*\,/, "");
+
+      // Error out if folderpath given does not exist:
       if (!exists(filepath))
         reject({ okay: false, error: "Folder path does not exist" });
+
       // Create a temporary canvas
       const canvas = document.createElement("canvas");
 
@@ -24,6 +26,7 @@ function convertBase64ToPNG(data, filename, filepath) {
       const dimensions = getPngDimensions(data);
       canvas.width = dimensions.width;
       canvas.height = dimensions.height;
+
       // Get drawing context, then set source.src to base64 dynamically
       const context = canvas.getContext("2d");
       const img = new Image();
@@ -76,6 +79,8 @@ function exists(targetPath) {
 // Determine the correct dimensions for the resulting PNG to get width/height of final result file
 function getPngDimensions(base64) {
   // base64 variable must not contain image:data prefix, must be rawdata
+  base64 = base64.replace(/^data.*\,/, "");
+
   const header = atob(base64.slice(0, 50)).slice(16, 24);
   const uint8 = Uint8Array.from(header, (c) => c.charCodeAt(0));
   const dataView = new DataView(uint8.buffer);

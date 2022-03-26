@@ -13,8 +13,7 @@ import path from "path";
 function convertBase64ToPNG(data, filename, filepath) {
   return new Promise((resolve, reject) => {
     try {
-      let prefix = data.match(/data.*\,/)[0];
-      data = data.replace(prefix, "");
+      data = data.replace(/^data.*\,/, "");
       if (!exists(filepath))
         reject({ okay: false, error: "Folder path does not exist" });
       // Create a temporary canvas
