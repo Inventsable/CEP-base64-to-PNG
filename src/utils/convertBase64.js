@@ -59,6 +59,7 @@ function convertBase64ToPNG(data, filename, filepath) {
       };
       img.src = `data:image/png;base64,${data}`;
     } catch (err) {
+      console.error(err);
       reject({
         okay: false,
         error: err,
@@ -74,14 +75,20 @@ function exists(targetPath) {
 
 // Determine the correct dimensions for the resulting PNG to get width/height of final result file
 function getPngDimensions(base64) {
-  // base64 variable must not contain image:data prefix, must be rawdata
-  const header = atob(base64.slice(0, 50)).slice(16, 24);
-  const uint8 = Uint8Array.from(header, (c) => c.charCodeAt(0));
-  const dataView = new DataView(uint8.buffer);
-  return {
-    width: dataView.getInt32(0),
-    height: dataView.getInt32(4),
-  };
+  try {
+    // base64 variable must not contain image:data prefix, must be rawdata
+    base64 = base64.replace(/^data.*\,/, "");
+
+    const header = atob(base64.slice(0, 50)).slice(16, 24);
+    const uint8 = Uint8Array.from(header, (c) => c.charCodeAt(0));
+    const dataView = new DataView(uint8.buffer);
+    return {
+      width: dataView.getInt32(0),
+      height: dataView.getInt32(4),
+    };
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 // In case you need reverse conversion, from PNG (or any image) > base64. This does not include an image:data prefix

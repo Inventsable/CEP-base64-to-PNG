@@ -76,3 +76,31 @@ Produces a valid PNG at `C:/Users/TRSch/OneDrive/Desktop/test.png`:
 ## Running this panel
 
 This panel is created from the [Bombino](https://github.com/Inventsable/bombino) generator and is currently in developer context. To use it, download it to a valid CEP folder, then use `npm run serve` and relaunch Illustrator. For more info about the setup and additional commands, visit the parent bombino repo.
+
+```js
+// Must include CSInterface.js as a preloaded script in your HTML:
+// https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_11.x/CSInterface.js
+// The below must be run after CSInterface.js is loaded, like in the custom logic / <body> tag
+let CSI = new CSInterface();
+CSI.addEventListener("myScriptMessage", (msg) => {
+  if (msg.data && msg.data !== "undefined") alert(msg.data);
+});
+```
+
+```js
+function JSXEvent(payload, eventType) {
+  try {
+    var xLib = new ExternalObject("lib:PlugPlugExternalObject");
+  } catch (e) {}
+  if (xLib) {
+    var eventObj = new CSXSEvent();
+    eventObj.type = eventType;
+    eventObj.data = payload;
+    eventObj.dispatch();
+  }
+  return;
+}
+
+// And then to send some data to our CEP panel:
+JSXEvent("Hello world from JSX", "myScriptMessage");
+```
