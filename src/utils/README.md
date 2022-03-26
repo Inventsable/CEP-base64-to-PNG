@@ -1,6 +1,6 @@
 I found [another parser](https://github.com/douzi8/base64-img) that seems lightweight and modified it to be able to be used as inline JS for you.
 
-The file is `./imgBase.js`, located here. You need to load this via `<script>` tag the same as my custom parser.
+The file is `./imgBase.js`, [located here](https://github.com/Inventsable/CEP-base64-to-PNG/blob/master/src/utils/imgBase.js). You need to load this via `<script>` tag the same as my custom parser.
 
 ```js
 /**
